@@ -2,12 +2,13 @@ import * as three from 'three'
 
 import { scene, renderer, camera, clock, controls } from './utils/baseRender'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { Color, Loader } from 'three'
-
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { AnimationMixer, Color, Loader } from 'three'
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment'
 const updateBase = (() => {
-    scene.background = new Color(0xa0a0a0)
-    controls.target.set(0, 1, 0)
-    scene.fog = new three.Fog(0x50b060, 1, 1000)
+    scene.background = new Color(0xf0fff0)
+    controls.target.set(0, 20, 0)
+    // scene.fog = new three.Fog(0x111111, 1, 1000)
 })()
 
 const initLight = () => {
@@ -33,45 +34,55 @@ const { spotLight, dirLight } = initLight()
 
 let mixer: three.AnimationMixer;
 
+const initEnv = (() => {
+    const pmremGenerator = new three.PMREMGenerator(renderer)
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.001)
+})()
+
 const initMeshes = () => {
     const plane = new three.Mesh(new three.BoxGeometry(100, 4, 100), new three.MeshPhongMaterial({
         color: 0x919191
     }))
-    plane.position.set(0, -2, 0)
-    scene.add(plane)
+    plane.position.set(0, 0, 0)
+    // scene.add(plane)
+
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/three/js/libs/draco/');
+
+    // Optional: Pre-fetch Draco WASM/JS module.
+    dracoLoader.preload();
 
     const glbLoader = new GLTFLoader()
-    glbLoader.load('models/Soldier.glb', (gltf) => {
+    glbLoader.setDRACOLoader(dracoLoader)
+    glbLoader.load('models/LittlestTokyo.glb', (gltf) => {
         console.log('gltf', gltf)
         const model = gltf.scene
-        model.traverse((obj) => {
-            if (obj.isObject3D) {
-                obj.castShadow = true
+        model.scale.set(0.1, 0.1, 0.1)
+        model.position.set(0, 24, 0)
+
+        // animation
+        mixer = new AnimationMixer(model)
+        mixer.clipAction(gltf.animations[0]).play()
+
+        model.traverse(child => {
+            if (child.isObject3D) {
+
             }
         })
-        const clip = gltf.animations[0]
-        mixer = new three.AnimationMixer(gltf.scene)
-        const action = mixer.clipAction(clip)
-        action.play()
-
         scene.add(model)
     })
     return { plane }
 }
 const { plane } = initMeshes()
 
-const enableShadow = (() => {
-    renderer.shadowMap.enabled = true
-    dirLight.castShadow = true
-    spotLight.castShadow = true
-    plane.receiveShadow = true
-})()
+
 
 // render
 const render = () => {
     requestAnimationFrame(render)
     const delta = clock.getDelta()
     mixer?.update(delta)
+    controls.update()
     // moveMeshes()
 
     renderer.render(scene, camera)

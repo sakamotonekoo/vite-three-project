@@ -1,6 +1,6 @@
-import * as three from "three"
+import * as three from 'three'
 
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const clock = new three.Clock();
 
@@ -20,7 +20,7 @@ const initCamera = () => {
 }
 
 
-// set up render and camera 
+// set up render and camera
 const renderer = initRenderer()
 const camera = initCamera()
 const scene = new three.Scene()
@@ -44,13 +44,7 @@ const initControls = () => {
 }
 const controls = initControls()
 
-
-
-
-
-
-
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)

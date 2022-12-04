@@ -3,4 +3,6 @@ import './style.css'
 // import "./physicBase"
 // import "./shadowmap"
 // import "./practiceBase/animation"
-import "./practiceBase/baseModel"
+
+// import "./practiceBase/Soldier"
+import './practiceBase/littlestTokyo'

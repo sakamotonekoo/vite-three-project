@@ -1,6 +1,6 @@
-import * as three from "three"
+import * as three from 'three'
 
-import { scene, renderer, camera } from "./utils/baseRender"
+import { scene, renderer, camera } from './utils/baseRender'
 
 const white = new three.Color().setHex(0xffffff)
 const randColor = new three.Color()
@@ -44,7 +44,7 @@ const meshes = initMeshes()
 const mouse = new three.Vector2(1, 1)
 const raycaster = new three.Raycaster()
 
-document.addEventListener("mousemove", e => {
+document.addEventListener('mousemove', e => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1
     mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
 })

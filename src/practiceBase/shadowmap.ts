@@ -1,12 +1,12 @@
-import * as three from "three"
+import * as three from 'three'
 
-import { scene, renderer, camera, clock } from "./utils/baseRender"
-import { ShadowMapViewer } from "three/examples/jsm/utils/ShadowMapViewer"
+import { scene, renderer, camera, clock } from './utils/baseRender'
+import { ShadowMapViewer } from 'three/examples/jsm/utils/ShadowMapViewer'
 const initLight = () => {
     scene.add(new three.AmbientLight(0x404040))
 
     const spotLight = new three.SpotLight(0xffffff)
-    spotLight.name = "spot light"
+    spotLight.name = 'spot light'
     spotLight.angle = Math.PI / 5
     spotLight.penumbra = 0.2
     spotLight.position.set(10, 10, 5)
@@ -14,7 +14,7 @@ const initLight = () => {
 
 
     const dirLight = new three.DirectionalLight(0xffffff, 1)
-    dirLight.name = "direct light"
+    dirLight.name = 'direct light'
     // dirLight.intensity = 0.5
     dirLight.position.set(0, 20, 0)
     scene.add(dirLight)

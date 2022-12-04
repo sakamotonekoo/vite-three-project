@@ -1,13 +1,13 @@
-import * as three from "three"
+import * as three from 'three'
 
-import { scene, renderer, camera, clock } from "./utils/baseRender"
+import { scene, renderer, camera, clock } from './utils/baseRender'
 
 
 const initLight = () => {
     scene.add(new three.AmbientLight(0x404040))
 
     const spotLight = new three.SpotLight(0xffffff)
-    spotLight.name = "spot light"
+    spotLight.name = 'spot light'
     spotLight.angle = Math.PI / 5
     spotLight.penumbra = 0.2
     spotLight.position.set(10, 10, 5)
@@ -15,7 +15,7 @@ const initLight = () => {
 
 
     const dirLight = new three.DirectionalLight(0xffffff, 1)
-    dirLight.name = "direct light"
+    dirLight.name = 'direct light'
     // dirLight.intensity = 0.5
     dirLight.position.set(0, 20, 0)
     scene.add(dirLight)
@@ -74,7 +74,7 @@ const moveMeshes = () => {
 
 const initAnimation = () => {
     const positionKF = new three.VectorKeyframeTrack(
-        ".position",
+        '.position',
         [0, 1, 2, 3],
         [
             0, 0, 0,
@@ -83,7 +83,7 @@ const initAnimation = () => {
             10, 10, 5]
     )
     const scaleKF = new three.VectorKeyframeTrack(
-        ".scale",
+        '.scale',
         [0, 1, 2, 3],
         [1, 2, 1,
             0.5, 1, 1,
@@ -94,7 +94,7 @@ const initAnimation = () => {
     const xAxis = new three.Vector3(1, 0, 0)
     const qInital = new three.Quaternion().setFromAxisAngle(xAxis, 0)
     const qFinal = new three.Quaternion().setFromAxisAngle(xAxis, 150)
-    const quaternionKF = new three.QuaternionKeyframeTrack(".quaternion", [0, 1, 2, 3],
+    const quaternionKF = new three.QuaternionKeyframeTrack('.quaternion', [0, 1, 2, 3],
         [
             qInital.x, qInital.y, qInital.z, qInital.w,
             qFinal.x, qFinal.y, qFinal.z, qFinal.w,
@@ -102,7 +102,7 @@ const initAnimation = () => {
             qFinal.x, qFinal.y, qFinal.z, qFinal.w,
         ])
 
-    const colorKF = new three.ColorKeyframeTrack(".material.color", [0, 1, 2, 3],
+    const colorKF = new three.ColorKeyframeTrack('.material.color', [0, 1, 2, 3],
         [
             1, 0, 0,
             0.23, 0.55, 0.78,
@@ -110,10 +110,10 @@ const initAnimation = () => {
             0.234, 0.423, 0.12
         ])
 
-    const opacityKF = new three.NumberKeyframeTrack(".material.opacity", [0, 1, 2, 3], [
+    const opacityKF = new three.NumberKeyframeTrack('.material.opacity', [0, 1, 2, 3], [
         0.5, 0, 0.5, 1
     ])
-    const clip = new three.AnimationClip("Action", 4, [positionKF, scaleKF, quaternionKF, colorKF, opacityKF])
+    const clip = new three.AnimationClip('Action', 4, [positionKF, scaleKF, quaternionKF, colorKF, opacityKF])
     return { positionKF, clip }
 }
 const { positionKF, clip } = initAnimation()
@@ -129,7 +129,7 @@ const render = () => {
     requestAnimationFrame(render)
     const delta = clock.getDelta()
     mixer.update(delta)
-    // moveMeshes() 
+    // moveMeshes()
 
     renderer.render(scene, camera)
 }

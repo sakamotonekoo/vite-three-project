@@ -1,8 +1,8 @@
-import * as three from "three"
+import * as three from 'three'
 
-import { scene, renderer, camera } from "./utils/baseRender"
-import { OimoPhysics } from "three/examples/jsm/physics/OimoPhysics"
-import { AmmoPhysics } from "three/examples/jsm/physics/AmmoPhysics"
+import { scene, renderer, camera } from './utils/baseRender'
+import { OimoPhysics } from 'three/examples/jsm/physics/OimoPhysics'
+import { AmmoPhysics } from 'three/examples/jsm/physics/AmmoPhysics'
 
 const initLight = () => {
     const hesLight = new three.HemisphereLight(new three.Color(0xff11ff))
