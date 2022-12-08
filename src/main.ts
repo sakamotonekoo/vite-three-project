@@ -5,4 +5,5 @@ import './style.css'
 // import "./practiceBase/animation"
 
 // import "./practiceBase/Soldier"
-import './practiceBase/littlestTokyo'
+// import './practiceBase/littlestTokyo'
+import "./practiceBase/10_clipping"
