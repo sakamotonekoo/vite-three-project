@@ -4,6 +4,7 @@ import { routes } from "./src/routes"
 import { resolve } from 'path'
 
 export default defineConfig({
+
     publicDir: "public",
     base: './',
     resolve: {
@@ -23,7 +24,7 @@ export default defineConfig({
             minify: true,
             pages: [
                 {
-                    entry: 'src/main.ts',
+                    entry: 'src/main.tsx',
                     filename: 'index.html',
                     template: 'index.html',
                     injectOptions: {

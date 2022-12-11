@@ -1,11 +1,15 @@
 import * as three from 'three'
 
-import { scene, renderer, camera, clock, controls } from '../practiceBase/utils/baseRender'
+import { scene, renderer, camera, clock, controls as orbitControls } from '../practiceBase/utils/baseRender'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Color, Loader } from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+orbitControls.enabled = false
 
 const updateBase = (() => {
     scene.background = new Color(0xa0a0a0)
+    const controls = new OrbitControls(camera, renderer.domElement)
+
     controls.target.set(0, 1, 0)
     scene.fog = new three.Fog(0x50b060, 1, 1000)
 })()

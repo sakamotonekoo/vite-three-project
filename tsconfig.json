@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ESNext",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": [

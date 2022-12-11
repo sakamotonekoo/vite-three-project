@@ -1,6 +1,8 @@
 import * as three from 'three'
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls'
+
 
 const clock = new three.Clock();
 
@@ -15,7 +17,7 @@ const initRenderer = () => {
 
 const initCamera = () => {
     const camera = new three.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000)
-    camera.position.set(18, 10, 10)
+    camera.position.set(180, 100, 100)
     return camera
 }
 
@@ -37,12 +39,14 @@ const axesHelper = initAxesHelper()
 
 
 const initControls = () => {
-    const controls = new OrbitControls(camera, renderer.domElement)
+    let controls = new TrackballControls(camera, renderer.domElement)
+
     controls.target.y = 5
+    controls.rotateSpeed = 10
     controls.update()
     return controls
 }
-const controls = initControls()
+let controls = initControls()
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight
