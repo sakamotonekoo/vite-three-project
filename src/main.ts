@@ -6,4 +6,6 @@ import './style.css'
 
 // import "./practiceBase/Soldier"
 // import './practiceBase/littlestTokyo'
-import "./practiceBase/10_clipping"
+// import "./practiceBase/10_clipping"
+
+import "./part_2/skybox"

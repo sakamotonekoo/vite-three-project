@@ -1,7 +1,7 @@
 import * as three from 'three'
 
 import { scene, renderer, camera, clock } from './utils/baseRender'
-import { ShadowMapViewer } from 'three/examples/jsm/utils/ShadowMapViewer'
+import { DoubleSide } from 'three'
 const initLight = () => {
     scene.add(new three.AmbientLight(0x404040))
 
@@ -84,15 +84,33 @@ const moveMeshes = () => {
 }
 
 
+const enableClipping = () => {
+    const plane = new three.Plane(new three.Vector3(1, 0, 0), 1)
+    plane.constant = 0.5
+
+    const plane1 = new three.Plane(new three.Vector3(0.2, 0.1, 0.2), 0)
+    plane1.constant = 0.5
 
 
+
+    const plane2 = new three.Plane(new three.Vector3(0, 1, 0.5), 0)
+    plane2.constant = 0.5
+
+    torusKnot.material.clippingPlanes = [plane, plane1, plane2]
+    torusKnot.material.side = DoubleSide
+    torusKnot.material.clipShadows = true
+    renderer.localClippingEnabled = true
+
+    renderer.clippingPlanes = [plane1]
+
+}
+
+enableClipping()
 // render
 const render = () => {
     requestAnimationFrame(render)
     moveMeshes()
     renderer.render(scene, camera)
-    viewerDir.render(renderer)
-    viewerSpot.render(renderer)
 }
 render()
 
