@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import { App } from "./App"
 import './style.css'
+import "./routes"
 // import './rayToChangeColor'
 // import "./physicBase"
 // import "./shadowmap"
@@ -13,7 +14,7 @@ import './style.css'
 // import "./practiceBase/10_clipping"
 
 // import "./part_2/skybox"
-import "./part_2/2_3_pathStripe"
+// import "../public/part_2/2_3_pathStripe"
 ReactDOM.createRoot(document.getElementById("app")!).render(
     <React.StrictMode>
         <BrowserRouter >
@@ -21,4 +22,5 @@ ReactDOM.createRoot(document.getElementById("app")!).render(
         </BrowserRouter>
     </React.StrictMode>
 )
+
 

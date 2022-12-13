@@ -31,7 +31,7 @@ const scene = new three.Scene()
 
 
 const initAxesHelper = () => {
-    const axesHelper = new three.AxesHelper(5)
+    const axesHelper = new three.AxesHelper(25)
     scene.add(axesHelper)
     return axesHelper
 }

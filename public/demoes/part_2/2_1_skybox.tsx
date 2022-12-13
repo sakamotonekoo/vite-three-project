@@ -4,7 +4,17 @@ import { scene, renderer, camera, clock, controls as orbitControls } from '../pr
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Color, Loader } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { ComponentType, ReactNode, useEffect } from 'react'
+import React from 'react'
 orbitControls.enabled = false
+
+const C = () => {
+    useEffect(() => {
+        render()
+    }, [])
+    return <div>CC</div>
+}
+export default C
 
 const updateBase = (() => {
     scene.background = new Color(0xa0a0a0)

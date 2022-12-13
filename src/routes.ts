@@ -1,8 +1,7 @@
-import { basePracticesRoutes } from "./practiceBase/routes";
 
-export type TRoute = {
-    path: string, name: string
-}
-export const routes: Array<TRoute> = [
-    ...basePracticesRoutes
-]
+export const urlFor = (path: string) => location.origin + path
+
+export const routes = {
+    index: "/",
+    demo: "/demo/"
+} as const
